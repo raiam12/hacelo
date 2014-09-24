@@ -1,0 +1,23 @@
+@import 'reset';
+@import 'animation';
+@import 'layout';
+@import 'buttons';
+@import 'toolbar';
+@import 'custom';
+
+@import 'webfont/darkroom';
+
+html, body {width:100%;background:white;height:100%;}
+.main-content{
+	width: 100%;
+	display: inline-block;
+	height: 100%;
+	-webkit-transform:translate3d(0,0,0);
+	-webkit-transition:-webkit-transform linear 1s;
+	.left-panel, .center-panel, .right-panel {
+		width: 33.33%;
+		height: 100%;
+		float: left;
+	}
+.images-hidden {display:none;}
+}

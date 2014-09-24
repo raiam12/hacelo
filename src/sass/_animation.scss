@@ -1,0 +1,55 @@
+.darkroom-container {
+  position: relative;
+}
+
+.darkroom-image-container {
+  top: 0;
+  left: 0;
+}
+.darkroom-image-container img {
+  display: none;
+}
+
+.view-animate-container {
+    position:relative;
+    height:100% !important;
+    position:relative;
+    background:white;
+    border:1px solid black;
+    height:40px;
+    overflow:hidden;
+  }
+
+  .view-animate {
+    -webkit-transform:translate3d(0,0,0);
+    -webkit-transition:-webkit-transform 0.5s linear;
+  }
+
+  .view-animate.ng-enter, .view-animate.ng-leave {
+    display:block;
+    width:100%;
+    border-left:1px solid black;
+	-webkit-transform:translate3d(0,0,0);
+	position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+  }
+
+  .view-animate.ng-enter {
+  	-webkit-transform:translate3d(100%,0,0);
+  }
+  .view-animate.ng-enter.ng-enter-active {
+    -webkit-transform:translate3d(0,0,0);
+  }
+  .view-animate.ng-leave.ng-leave-active {
+  	/*display: none;*/
+    -webkit-transform:translate3d(-100%,0,0);
+  }
+
+  .view-animate {
+  	background: white;
+  }
+
+  section{height:100%;}
