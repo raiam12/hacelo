@@ -10,7 +10,8 @@ module.exports = function(grunt){
 		},*/
 		config:{
 			root:"src",
-			rootBuild:"hacelo/www/build"
+			rootBuild:"hacelo/www/build",
+			rootPartials:"hacelo/www/"
 		},
 
 		sass: {
@@ -28,6 +29,7 @@ module.exports = function(grunt){
 	    	build:['<%= config.rootBuild %>'],
 	    	sass:['<%= config.rootBuild %>/css'],
 	    	js:['<%= config.rootBuild %>/js'],
+	    	partials:['<%= config.rootPartials %>partials']
 	    },
 
 	    watch:{
@@ -38,6 +40,11 @@ module.exports = function(grunt){
 	    	js:{
 	    		files:['<%= config.root %>/lib/custom/*.js'],
 	    		tasks:['clean:js','copy:js','copy:custom_js','uglify:darkroom','uglify:fabric','uglify:js']
+	    	},
+
+	    	partials:{
+	    		files:['<%= config.root %>/partials/*.html'],
+	    		tasks:['clean:partials','copy:partials']
 	    	}
 	    },
 
@@ -106,6 +113,14 @@ module.exports = function(grunt){
 	    			src:'*.js',
 	    			dest:'<%= config.rootBuild %>/js/custom/'
 	    		}]
+	    	},
+	    	partials :{
+	    		files:[{
+	    			expand:true,
+	    			cwd:'<%= config.root %>/partials/',
+	    			src:'*.html',
+	    			dest:'<%= config.rootPartials %>partials/'
+	    		}]
 	    	}
 	    },
 
@@ -138,5 +153,5 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-connect');
   	grunt.loadNpmTasks('grunt-webfont');
-	grunt.registerTask('default',['clean:build',/*,'concat'*/'copy','uglify:darkroom','uglify:fabric','uglify:js','webfont','sass','watch']);
+	grunt.registerTask('default',['clean:build','clean:partials',/*,'concat'*/'copy','uglify:darkroom','uglify:fabric','uglify:js','webfont','sass','watch']);
 };
