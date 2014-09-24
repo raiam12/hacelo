@@ -1,24 +1,22 @@
-(function(){
-
-})();
-
+var config_path = "partials/";
 var nacion = angular.module("nacion",["ngRoute","ngAnimate"]);
 
 nacion.config(["$routeProvider",
+
   function($routeProvider){
       $routeProvider.when('/',{
 
-        templateUrl:'partials/index.html',
+        templateUrl:config_path+'index.html',
         controller: 'nacion_controller'
 
-      }).when('/more',{
+      }).when('/imprimir',{
 
-        templateUrl:'partials/second.html',
+        templateUrl:config_path+'imprimir.html',
         controller: 'nacion_controller'
 
       }).when('/more2',{
 
-        templateUrl:'partials/index.html',
+        templateUrl:config_path+'index.html',
         controller: 'nacion_controller'
 
       }).otherwise({ redirectTo:function(){
