@@ -1,0 +1,17 @@
+<div class="index">
+	<header class="hacelo_main_header"><img src="http://placehold.it/200x200"/></header>
+	<div class="content">
+		<div>mAqui va el splash screen</div>
+		<input ng-model="url_current"/>
+		<button ng-click="insert_url(url_current)">Inserta un url</button>
+		<div class="imagen" ng-repeat="item in url track by $index">
+		    <img src="{{ item }}" id="img_{{ $index }}" ng-click="insert_crop(item,$event)"/>
+		    <input width="100" name="images[]" ng-model="item" value="{{item}}"/>
+		  </div>
+		<a href="#more" >click en second mop</a>
+	</div>
+</div>
+
+
+
+
