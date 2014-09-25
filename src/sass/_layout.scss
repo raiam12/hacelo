@@ -11,18 +11,43 @@ $font-size-media:100%;
       -ms-border-radius: $radius;
           border-radius: $radius;
 }
+
+@mixin box-shadow($value1,$value2,$value3, $color){
+  -webkit-box-shadow : $value1 $value2 $value3 $color;
+           box-shadow: $value1 $value2 $value3 $color;
+}
+
+@mixin center-element($position){
+    position: $position;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+body {
+  overflow:hidden; 
+}
 body *{
   font-size: $font-size;
   overflow: hidden;
   h1{font-size: 1.5em;}
 }
-section > div{height:100%;}
+section > div{height:100%;position: relative;}
+
+/* RULES FOR 
+ * INDEX MAIN PAGE
+ * EVERY SINGLE
+ * RULE IS JUST FOR THIS PAGE
+ */
 .index {
     header.hacelo_main_header {
         width: 100%;
         height: 20%;
         background: $font-color;
         text-align: center;
+        position: relative;
         img {
           height: 100%;
         }
@@ -50,12 +75,20 @@ section > div{height:100%;}
     }
 }
 
+/* RULES FOR 
+ * ALL PAGES 
+ * WITHOUT EXCEPTION
+ */
 section header {
   font-size: 1em;
   color: white;
   height: 49px;
   background: $header-color;
   text-align: center;
+  z-index:3;
+  @include box-shadow(-2px,0px,15px, #000);
+  position: absolute;
+  width: 100%;
 
   .left{
     float:left;
@@ -70,7 +103,7 @@ section header {
   .left,
   .right {
     height: 24px;
-    margin: 2.5% 0 0;
+    margin: 8px 0 0;
     padding: 8px 0 0;
     background: grey;
   }
@@ -81,3 +114,111 @@ section header {
 }
 
 .content  {height: 80%;}
+.container {
+  height: 100%;
+}
+
+/*
+ * PRINT PAGE
+ * GLOBAL SEETINGS
+ */
+.print {
+  .container {
+    & > div {
+      height: 33.3%;
+      width:100%;
+      border: 1px solid #000;
+      background: #c2c2c2;
+      position: relative;
+
+      a {
+        height: 10px;
+        padding: 5% 10px;
+        text-align: center;
+        border: 1px solid #000;
+        @include center-element(absolute);
+        width: 80%;
+      }
+    } 
+
+  }
+}
+
+/*
+ * PHOTO PAGE
+ * GLOBAL SEETINGS
+ */
+
+.photo-page {
+  .container {
+    .photo-cover{
+      background: #c2c2c2;
+      height: 60%;
+      width: 100%;
+    }
+    .cover {
+      color:white;
+      height: 10%;
+      background: red;
+      position: relative;
+
+      span {
+        @include center-element(absolute);
+        width: 100%;
+        height: 12px;
+        text-align: center;
+      }
+    }
+
+    .menu {
+      height:30%;
+      text-align: center;
+      padding-top: 5%;
+      p{
+        text-transform: capitalize;
+        font-size: 1.2em;
+        padding: 2% 0;
+        span {
+          font-size: 1.2em;
+          font-weight: bold;
+          margin-right: 2%; 
+        }
+      }
+      .pick-container {
+        position: absolute;
+        width: 100%;
+        bottom: 5%;
+        a { 
+          border: 1px solid #000;
+          padding: 5%;
+          margin: 2% 0 0;
+          display: inline-block;
+          width: 50%;
+        }
+      }
+      
+    }
+  }
+}
+
+/*
+ * PHOTO PICK PAGE
+ * GLOBAL SEETINGS
+ */
+.photo-page-picker{
+  .container {
+    padding-top:49px;
+    box-sizing:border-box;
+
+    a {
+      width: 100%;
+      background: red;
+      height: 10px;
+      text-align: center;
+      display: inline-block;
+      padding: 5% 0;
+      margin-bottom: 0.5%;
+    }
+  }
+}
+

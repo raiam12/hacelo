@@ -15,7 +15,7 @@
     height:100% !important;
     position:relative;
     background:white;
-    border:1px solid black;
+    /*border:1px solid black;*/
     height:40px;
     overflow:hidden;
   }
@@ -28,13 +28,17 @@
   .view-animate.ng-enter, .view-animate.ng-leave {
     display:block;
     width:100%;
-    border-left:1px solid black;
+    /*border-left:1px solid black;*/
 	-webkit-transform:translate3d(0,0,0);
 	position:absolute;
     top:0;
     left:0;
     right:0;
     bottom:0;
+  }
+
+  .ng-enter {
+    border-left:1px solid #000; 
   }
 
   .view-animate.ng-enter {

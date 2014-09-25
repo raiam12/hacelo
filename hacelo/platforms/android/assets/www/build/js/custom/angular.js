@@ -2,7 +2,6 @@ var config_path = "partials/";
 var nacion = angular.module("nacion",["ngRoute","ngAnimate"]);
 
 nacion.config(["$routeProvider",
-
   function($routeProvider){
       $routeProvider.when('/',{
 
@@ -10,14 +9,19 @@ nacion.config(["$routeProvider",
         controller: 'nacion_controller'
 
       }).when('/imprimir',{
-
-        templateUrl:config_path+'imprimir.html',
+        templateUrl:config_path+'print.html',
         controller: 'nacion_controller'
 
       }).when('/more2',{
-
         templateUrl:config_path+'index.html',
         controller: 'nacion_controller'
+
+      }).when('/photo',{
+        templateUrl:config_path+'photo.html'
+
+      }).when('/pick',{
+        templateUrl:config_path+'pick.html',
+        controller: 'pick_controller'
 
       }).otherwise({ redirectTo:function(){
           return 'failed';
@@ -82,4 +86,12 @@ nacion.controller('nacion_controller',['nacion_service','$scope',function(nacion
     $scope.$apply();
   });
 
-    }]);
+}]);
+
+nacion.controller("pick_controller",['nacion_service','$scope',function(nacion_service, $scope){
+
+  $scope.call_instagram = function(){
+    alert('click');
+  };
+
+}]);

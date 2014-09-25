@@ -74,8 +74,10 @@
 /Users/raiamquesada/Documents/Phonegap/hacelo/hacelo/hacelo/platforms/android/assets/www/css/index.css \
 /Users/raiamquesada/Documents/Phonegap/hacelo/hacelo/hacelo/platforms/android/assets/www/img/logo.png \
 /Users/raiamquesada/Documents/Phonegap/hacelo/hacelo/hacelo/platforms/android/assets/www/js/index.js \
-/Users/raiamquesada/Documents/Phonegap/hacelo/hacelo/hacelo/platforms/android/assets/www/partials/imprimir.html \
 /Users/raiamquesada/Documents/Phonegap/hacelo/hacelo/hacelo/platforms/android/assets/www/partials/index.html \
+/Users/raiamquesada/Documents/Phonegap/hacelo/hacelo/hacelo/platforms/android/assets/www/partials/photo.html \
+/Users/raiamquesada/Documents/Phonegap/hacelo/hacelo/hacelo/platforms/android/assets/www/partials/pick.html \
+/Users/raiamquesada/Documents/Phonegap/hacelo/hacelo/hacelo/platforms/android/assets/www/partials/print.html \
 /Users/raiamquesada/Documents/Phonegap/hacelo/hacelo/hacelo/platforms/android/assets/www/res/icon \
 /Users/raiamquesada/Documents/Phonegap/hacelo/hacelo/hacelo/platforms/android/assets/www/res/screen \
 /Users/raiamquesada/Documents/Phonegap/hacelo/hacelo/hacelo/platforms/android/assets/www/res/icon/android \
