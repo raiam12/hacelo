@@ -4,7 +4,7 @@
  *
  *
  */
- (function(){
+ /*(function(){
  	window.strings = window.strings || {};
  	var upload_template, login_template, pay_template, dkrm;
 
@@ -12,7 +12,7 @@
  	 * Init function
  	 *
  	 */
- 	(function init(){
+ 	/*(function init(){
  		$.getJSON( "config/strings.json", function( data ) { 
  			var template = new fit_template(data);
  			upload_template = template.get_full_template("#login-picture");
@@ -29,7 +29,7 @@
  	 *
  	 */
 
- 	var fit_template = function(strings){
+ 	/*var fit_template = function(strings){
  		this.strings = strings;
  	};
 
@@ -37,7 +37,7 @@
  	 * Functions for main class
  	 *
  	 */
- 	fit_template.prototype = {
+ 	/*fit_template.prototype = {
  		get_full_template : function(id){
  			var html = $(id).html();
  			var template = Handlebars.compile(html);
@@ -49,7 +49,7 @@
  	 *Adding events to entire page
  	 *
  	 */
- 	 function add_events(){
+ 	 /*function add_events(){
  	 	$('body').delegate("a","click",function(){
  	 		  dkrm = new Darkroom('#target', {
 			      minWidth: 0,
@@ -70,7 +70,7 @@
 		    /*
 		    dkrm.snapshotImage();
 		    */
- 	 	});
+ 	 	/*});
 
  	 	$(".ingresar-data").on('click',function(){
  	 		$(".main-content").css("-webkit-transform","translate3d(-33%,0,0)");
@@ -80,7 +80,7 @@
 
  	 };
     
- })();
+ })();*/
 
 
 
@@ -89,7 +89,11 @@
 
  (function(){
 
- 	
-
+ 	window.hacelo = window.hacelo || {};
+ 	window.hacelo = {
+ 		alert : function(string){
+ 			alert(string);
+ 		}
+ 	};
 
  })();

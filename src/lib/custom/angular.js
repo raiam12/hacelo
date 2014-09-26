@@ -23,6 +23,10 @@ nacion.config(["$routeProvider",
         templateUrl:config_path+'pick.html',
         controller: 'pick_controller'
 
+      }).when('/instagram',{
+        templateUrl:config_path+'instagram.html',
+        controller: 'pick_controller'
+
       }).otherwise({ redirectTo:function(){
           return 'failed';
         }
@@ -32,6 +36,8 @@ nacion.config(["$routeProvider",
 
 nacion.service('nacion_service',function(){ 
   this.url = [];
+  this.instagram_pictures = [];
+  this.entire_ins_pics = [];
 
   this.insert_url = function(url){
     this.url.push(url);
@@ -39,6 +45,22 @@ nacion.service('nacion_service',function(){
 
   this.return_url = function(){
     return this.url;
+  };
+
+  this.set_entire_ins_pics = function(data){
+    this.entire_ins_pics = data;
+  };
+
+  this.get_entire_ins_pics = function(data){
+    return  this.entire_ins_pics;
+  };
+
+  this.insertInstagram_picture = function(data){
+    this.instagram_pictures.push();
+  };
+
+  this.get_Instagram_picture = function(){
+    return this.instagram_pictures;
   }
 
 });
@@ -89,9 +111,65 @@ nacion.controller('nacion_controller',['nacion_service','$scope',function(nacion
 }]);
 
 nacion.controller("pick_controller",['nacion_service','$scope',function(nacion_service, $scope){
+  $scope.instagram_pics = nacion_service.get_entire_ins_pics();
+  $scope.instagram_images = [];
+  $scope.normal_pics = [];
+  $scope.username = '';
+  $scope.instagram = null;
+  var username_html = $(".username-hidden-field");
 
   $scope.call_instagram = function(){
-    alert('click');
+    $scope.instagram = '';
+    if($scope.username != ""){
+          var instagramA = new Instagram($scope.username);
+          instagramA.init();
+          username_html.removeClass('reset_value');
+    } else {
+      hacelo.alert(messages["FILL"]);
+    }
+    
   };
+
+  $scope.call_popup = function(){
+    if($scope.instagram_pics.length>0){
+          window.location.hash ="#/instagram"
+    } else {
+        username_html.addClass('reset_value');
+    }
+    
+  };
+
+  $scope.pick_song = function(index){
+    console.debug($scope.instagram_pics[index]);
+    if($scope.instagram_pics[index].picked){
+      $scope.instagram_pics[index].picked = false;
+    } else {
+      $scope.instagram_pics[index].picked = true;
+    }
+  };
+
+  document.addEventListener('_EMPTY',function(){
+    nacion_service.set_entire_ins_pics(null);
+    $scope.instagram_pics = nacion_service.get_entire_ins_pics();
+  });
+
+
+  /*
+   * 
+   */
+  document.addEventListener('finish',function(e){
+    $scope.instagram_pics = e.detail;
+    var array = [];
+    for (var el = 0;el<$scope.instagram_pics.length;el++){
+      var obj  ={"img":$scope.instagram_pics[el],"picked":false};
+      array.push(obj);
+    }
+    $scope.instagram_pics = array;
+    nacion_service.set_entire_ins_pics($scope.instagram_pics);
+    $scope.$apply();
+    if($scope.instagram_pics.length >0){
+      window.location.hash="#/instagram"
+    }  
+  });
 
 }]);

@@ -17,6 +17,10 @@ $font-size-media:100%;
            box-shadow: $value1 $value2 $value3 $color;
 }
 
+@mixin animation-translate($time) {
+  -webkit-transition:-webkit-transform $time linear;
+}
+
 @mixin center-element($position){
     position: $position;
     margin: auto;
@@ -25,6 +29,7 @@ $font-size-media:100%;
     right: 0;
     bottom: 0;
 }
+
 
 body {
   overflow:hidden; 
@@ -209,7 +214,51 @@ section header {
   .container {
     padding-top:49px;
     box-sizing:border-box;
+    overflow-y:scroll;
+    .username-hidden-field {
+      @include animation-translate(0.2s);
+      -webkit-transform:translate3d(0,-150%,0);
+      text-align: center;
+      -webkit-box-shadow: 2px 2px 10px 0px, inset 2px -5px 19px 0px rgba(135,135,135,1);;
+      -moz-box-shadow: 2px 2px 10px 0px, inset 2px -5px 19px 0px rgba(135,135,135,1);;
+      box-shadow: 2px 2px 10px 0px, inset 2px -5px 19px 0px rgba(135,135,135,1);;
+      position: absolute;
+      height: 16%;
+      background: #DCD9D9;
+      border-radius: 0 0 25px 25px;
+      top: 49px;
+      left: 0;
+      right: 0;
+      width: 95%;
+      margin: auto;
+      border: 1px solid #000;
+      border-top: 0;
+      box-sizing: border-box;
+      padding: 15px;
 
+    }
+    div.imagen{
+      width: 25%;
+      float:left;
+      position: relative;
+      box-sizing:border-box;
+      &.true{
+        border: 5px solid red;
+      }
+      img{
+        width: 100%;
+      }
+      .pick-img {
+        position: absolute;
+        right: 0;
+        width: 30%;
+        height: 30%;
+        background: url("http://www.prudentialvanlines.com/moving-services/images/checkmark.png");
+        background-size: 100% 100%;
+        outline: none;
+        border: 0;
+      }
+    }
     a {
       width: 100%;
       background: red;
@@ -222,3 +271,12 @@ section header {
   }
 }
 
+
+/*
+ *
+ * GLOBAL SEETINGS
+ */
+
+ .photo-page-picker .container .username-hidden-field.reset_value {
+  -webkit-transform:translate3d(0,0,0);
+ }

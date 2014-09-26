@@ -4,7 +4,20 @@
 		<h1>FOTOS</h1>
 	</header>
 	<div class="container">
-		<a class="button-picker" ng-click="call_instagram()">Instagram</a>
+		<div class="username-hidden-field">
+			Escribe el usuario a encontrar
+			<input type="text" ng-model="username"/>
+			<button ng-click="call_instagram()">Encontrar</button>
+		</div>
+		<a class="button-picker" ng-click="call_popup()">Instagram</a>
+		<div class="images-hidden"></div>
+		<!--div class="instagram-pics">
+			<div class="imagen" ng-animate="'animate'" ng-repeat="item in instagram_pics track by $index">
+				<button class="pick-img"></button>
+			    <img width="" src="{{ item.img }}" class="{{item.picked}}" id="img_{{ $index }}"/>
+			 </div>
+		</div-->
 		<a class="button-picker">Album</a>
+		<div class="normal-pics"></div>
 	</div>
-</div>
+</div> 

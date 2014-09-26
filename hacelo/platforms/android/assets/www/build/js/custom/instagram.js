@@ -4,8 +4,14 @@
      *
      */
 
-    
+      
      'use-strict';
+
+    window.messages ={
+      "EMPTY":"No hay iamgenes la cuenta!",
+      "NO_EXIST":"El usuario no existe!",
+      "FILL":"Por favor, llenar los campos!"
+     }
     /*
      * Instagram constructor
      */
@@ -16,7 +22,7 @@
       this.redirect_uri="http://yahoo.com";
       this.url = "https://instagram.com/oauth/authorize/?client_id="+this.client_id+"&redirect_uri="+this.redirect_uri+"&response_type=token";
       this.access_token = "";
-      this.username = "raiamquesada";
+      this.username = username;
       this.user_id = "";
       this.img = "";
       this.tab = {};
@@ -34,7 +40,7 @@
       window.Instagram.prototype = {
 
       init : function(){
-        this.tab = window.open(encodeURI(this.url), '_blank', 'location=yes,clearcache=yes');
+        this.tab = window.open(encodeURI(this.url), '_blank', 'location=yes,clearcache=no');
         this.bind_events();
       },
 
@@ -65,7 +71,13 @@
 
       insert_images : function(response , self){
         console.debug(response);
-        var array = new Array(), 
+        $('.images-hidden *').remove()
+        if(response.data.length<=0){
+          hacelo.alert(messages["EMPTY"]);
+          createEvent('_EMPTY');
+
+        } else {
+            var array = new Array(), 
             obj = new Object(),
             img = '',
             counter = 0,
@@ -85,16 +97,25 @@
               count = $(".img_test").length;
               img_encode = $(".img_test");
               for(var x = 0; x < count;x++){
+                console.debug(img_encode[x].id);
+                console.log(self.convert_img_to_encode(img_encode[x].id));
                 self.array_angular.push(self.convert_img_to_encode(img_encode[x].id));
               }
               self.createEvent('finish',self.array_angular);
             },400);
+        }
       },
 
       get_user_id : function(data, scope){
-        var self = scope; 
-        self.user_id = data.data[0].id;
-        self.fetch("https://api.instagram.com/v1/users/"+self.user_id+"/media/recent",'access_token='+self.access_token,self.insert_images);
+        if(data.data.length <= 0){
+          hacelo.alert(messages['NO_EXIST']);
+        } else {
+          console.debug(data.data[0].id);
+          var self = scope; 
+          self.user_id = data.data[0].id;
+          self.fetch("https://api.instagram.com/v1/users/"+self.user_id+"/media/recent",'access_token='+self.access_token,self.insert_images);
+        }
+        
       },
 
       found_access_code : function(data){
