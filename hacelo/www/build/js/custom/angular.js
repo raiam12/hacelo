@@ -27,6 +27,10 @@ nacion.config(["$routeProvider",
         templateUrl:config_path+'instagram.html',
         controller: 'pick_controller'
 
+      }).when('/market',{
+        templateUrl:config_path+'carrito.html',
+        controller: 'nacion_market'
+
       }).otherwise({ redirectTo:function(){
           return 'failed';
         }
@@ -38,6 +42,7 @@ nacion.service('nacion_service',function(){
   this.url = [];
   this.instagram_pictures = [];
   this.entire_ins_pics = [];
+  this.orders = [];
 
   this.insert_url = function(url){
     this.url.push(url);
@@ -61,9 +66,23 @@ nacion.service('nacion_service',function(){
 
   this.get_Instagram_picture = function(){
     return this.instagram_pictures;
-  }
+  };
+
+  this.return_order = function(){
+    return this.orders;
+  };
+
+  this.add_order = function(order){
+    this.orders.push(order);
+  };
 
 });
+
+nacion.controller('nacion_market',['nacion_service','$scope',function(nacion_service, $scope){
+
+  $scope.orders = nacion_service.return_order();
+
+}]);
 
 nacion.controller('nacion_controller',['nacion_service','$scope',function(nacion_service, $scope){
   //$scope.url = ["https://www.google.com/images/srpr/logo11w.png","https://www.google.com/images/srpr/logo11w.png"];
@@ -140,11 +159,10 @@ nacion.controller("pick_controller",['nacion_service','$scope',function(nacion_s
   };
 
   $scope.pick_song = function(index){
-    console.debug($scope.instagram_pics[index]);
     if($scope.instagram_pics[index].picked){
       $scope.instagram_pics[index].picked = false;
     } else {
-      $scope.instagram_pics[index].picked
+      $scope.instagram_pics[index].picked = true;
     }
   };
 
